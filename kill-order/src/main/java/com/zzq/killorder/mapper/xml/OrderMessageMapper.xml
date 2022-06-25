@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzq.killorder.mapper.OrderMessageMapper">
+
+    <select id="selectOrderMessageCount" parameterType="string" resultType="int">
+        select count(*) from `order_message` where messageId=#{messageId}
+    </select>
+
+    <insert id="addOrderMessage" parameterType="com.zzq.killorder.pojo.OrderMessage">
+        insert into `order_message`(messageId, user_id, message_status,good_id )
+        VALUES (#{orderMessage.messageId},#{orderMessage.userId},#{orderMessage.messageStatus},#{orderMessage.goodId} )
+    </insert>
+
+</mapper>

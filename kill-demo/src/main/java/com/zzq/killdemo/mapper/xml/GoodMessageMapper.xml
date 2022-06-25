@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzq.killdemo.mapper.GoodMessageMapper">
+
+    <update id="updateGoodMessage" parameterType="string">
+        update `good_message` set messageStatus=1 where messageId=#{messageId}
+    </update>
+
+    <insert id="addMessage" parameterType="com.zzq.killdemo.pojo.GoodMessage">
+        INSERT INTO `good_message` (messageId, userId, messageStatus,goodId )VALUES
+        (#{goodMessage.messageId},#{goodMessage.userId},#{goodMessage.messageStatus},#{goodMessage.goodId})
+    </insert>
+
+    <select id="selectNoConfirmMessageList" resultType="com.zzq.killdemo.pojo.GoodMessage">
+        select messageId,userId,messageStatus,goodId from `good_message` where messageStatus=0
+    </select>
+</mapper>

@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://110.42.225.78:3306/kill?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #配置初始化大小、最小、最大线程数
+      initialSize: 5
+      minIdle: 5
+      #CPU核数+1，也可以大些但不要超过20，数据库加锁时连接过多性能下降
+      maxActive: 20
+      #最大等待时间
+      maxWait: 100000
+      #设置从连接池获取连接时是否检查连接有效性，true检查，false不检查
+      testOnBorrow: true
+      #设置从连接池归还连接时是否检查连接有效性，true检查，false不检查
+      testOnReturn: true
+      #     保持长连接
+      keepAlive: true
+
+
+
+    #redis配置
+  redis:
+    host: 39.105.202.225
+    port: 6379
+    database: 0
+    timeout: 10000ms
+    lettuce:
+      pool:
+        #最大连接数。默认为8
+        max-active: 8
+        #最大连接阻塞时间,默认-1
+        max-wait: 10000ms
+        #最大空闲连接，默认8
+        max-idle: 200
+        #最小空闲连接，默认0
+        min-idle: 5
+  rabbitmq:
+    host: 110.42.225.78
+    port: 5672
+    username: admin
+    password: admin
+
+  thymeleaf:
+    cache: false
+
+mybatis-plus:
+  mapper-locations: classpath:com/zzq/killdemo/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
